@@ -46,10 +46,10 @@ def read_the_code(code):
 memory = ConversationBufferMemory(memory_key="chat_history")
 
 # Plan-and-Execute Model: Use this for robust answers and no conversation
-agent = initialize_agent(tools, llm, AgentType.ZERO_SHOT_REACT_DESCRIPTION, memory=memory, verbose=True)
+# agent = initialize_agent(tools, llm, AgentType.ZERO_SHOT_REACT_DESCRIPTION, memory=memory, verbose=True)
 
 # Conversation Modal: Use this for a conversational bot
-# agent = initialize_agent(tools, llm, AgentType.CONVERSATIONAL_REACT_DESCRIPTION, memory=memory, verbose=True)
+agent = initialize_agent(tools, llm, AgentType.CONVERSATIONAL_REACT_DESCRIPTION, memory=memory, verbose=True)
 
 
 # Conversational loop
