@@ -26,13 +26,13 @@ python_tool = PythonREPLTool()
 google_search = GoogleSearchAPIWrapper()
 # Conversational bot just needs internet access
 convo_tools = [
-    # Use SerpAPI to use Google results
+    # Use wrapper to use Google results
     Tool('Current Search', google_search.run, 
          "useful for when you need to answer questions requiring a lookup"),
 ]
 # Research bot needs access to all kinds of information
 plan_tools = [
-    # Use SerpAPI to use Google results
+    # Use wrapper to use Google results
     Tool('Current Search', google_search.run, 
          "useful for when you need to answer questions requiring a Google lookup"),
     # Good way to find wordy explanations
@@ -51,6 +51,8 @@ math_tools.append(Tool('Current Search', google_search.run,
                     'use for searching Google'))
 math_tools.append(Tool('Python', python_tool,
                        "use for reading and writing python code"))
+math_tools.append(Tool('YouTube Search', yt,
+                       "use for finding videos"))
 
 # Simple conversation buffer for short-term memory
 memory = ConversationBufferMemory(memory_key="chat_history")
@@ -97,7 +99,7 @@ while user_input != "exit" or user_input != 'quit':
         if user_input == 'back': continue
         if user_input == 'exit' or user_input == 'quit':
             exit()
-        if user_input == 'vocal':   
+        if user_input == 'vocal':
             user_input = ac.listen_for_voice()
         print("\n---------AI PROCESS BEGIN---------")
         output = agent.run(user_input)
